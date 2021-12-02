@@ -61,7 +61,7 @@ tidy_meta <- function(dat,
   
   output <- bind_cols(res, summary) %>%
     mutate_if(is.numeric, round, 3) %>%
-    select(method, estimate, n_studies, n_es)
+    dplyr::select(method, estimate, n_studies, n_es)
   
   return(output)
 }

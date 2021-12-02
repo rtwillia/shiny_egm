@@ -13,7 +13,9 @@ library(estimatr)
 library(readxl)
 library(shinybusy)
 
-
+source("tidy_meta.R")
+source("plot_egm.R")
+source("parse_syntax.R")
 
 ui <- fluidPage(
   
