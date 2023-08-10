@@ -5,13 +5,6 @@ library(clubSandwich)
 library(estimatr)
 
 
-library(robumeta)
-library(tidyverse)
-library(metafor)
-library(clubSandwich)
-library(estimatr)
-
-
 tidy_meta <- function(dat, 
                       rho_val){
   
