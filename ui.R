@@ -277,7 +277,8 @@ ui <- fluidPage(
               tabPanel("R Syntax",
                        rclipboardSetup(),
                        uiOutput("clip"),
-                       verbatimTextOutput("syntax"))
+                       verbatimTextOutput("syntax")
+                       )
               
   )
 )  

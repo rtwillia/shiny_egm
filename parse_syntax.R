@@ -9,7 +9,7 @@ parse_code_chunk <- function(chunk, args) {
   
   chunk_path <- paste0("code_chunks/", chunk,".R")
   
-  raw_code <- readLines(chunk_path)
+  raw_code <- readLines(chunk_path, warn = FALSE)
   
   code_chunk <- paste(raw_code, collapse = "\n")
   

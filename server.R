@@ -1526,12 +1526,15 @@ server <-
     })
     
     
-    output$syntax <- renderPrint({
-      cat(egm_syntax(), sep = "\n")
-    })
+     output$syntax <- renderPrint({
+       cat(egm_syntax(), sep = "\n")
+     })
     
     output$clip <- renderUI({
-      rclipButton("clipbtn", "Copy", egm_syntax(), icon("clipboard"))
+      rclipButton(inputId = "clipbtn", 
+                  label = "Copy", 
+                  clipText = egm_syntax(), 
+                  icon = icon("clipboard"))
     })
     
   })
