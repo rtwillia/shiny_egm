@@ -12,6 +12,7 @@ library(janitor)
 library(estimatr)
 library(readxl)
 library(shinybusy)
+library(markdown)
 
 source("tidy_meta.R")
 source("plot_egm.R")

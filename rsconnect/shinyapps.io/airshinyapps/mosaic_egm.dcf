@@ -5,9 +5,9 @@ account: airshinyapps
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5253746
-bundleId: 7552920
+bundleId: 7552982
 url: https://airshinyapps.shinyapps.io/mosaic_egm/
-when: 1691683067.1952
-lastSyncTime: 1691683067.19522
+when: 1691683893.60527
+lastSyncTime: 1691683893.60529
 asMultiple: FALSE
 asStatic: FALSE
