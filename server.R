@@ -194,10 +194,13 @@ server <-
             
             if (is.null(inFile)) return(NULL)
             
-            read.table(inFile$datapath, header = input$header, 
-                       sep = input$sep, #quote=input$quote,
-                       stringsAsFactors = FALSE) %>% 
-              clean_names(case = "parsed")
+            read_delim(inFile$datapath,
+                       col_names = input$header) %>%
+                       #header = input$header, 
+                       #sep = input$sep, #quote=input$quote,
+                       #stringsAsFactors = FALSE) %>% 
+              clean_names(case = "parsed") %>%
+              as.data.frame()
             
           } else if (input$summary_raw == "esdat" & input$dat_type == "xlsx" || input$summary_raw == "sumdat" & input$dat_type == "xlsx") {
             
