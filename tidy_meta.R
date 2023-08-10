@@ -5,9 +5,16 @@ library(clubSandwich)
 library(estimatr)
 
 
+library(robumeta)
+library(tidyverse)
+library(metafor)
+library(clubSandwich)
+library(estimatr)
+
+
 tidy_meta <- function(dat, 
                       rho_val){
-
+  
   
   summary <- dat %>% 
     summarize(n_studies = n_distinct(study_id),
@@ -18,21 +25,21 @@ tidy_meta <- function(dat,
   
   if(m > 2){
     
-
-      mod <- robu(formula = es ~ 1,
-                  data = dat,
-                  var.eff.size = var,
-                  modelweights = "CORR",
-                  rho = rho_val,
-                  studynum = study_id)
-      
-      
-      res <- conf_int(mod, vcov = "CR2", tidy = TRUE) %>%
-        rename(estimate = beta) %>%
-        as_tibble() %>%
-        mutate(method = "Correlated Effects") 
-      
-   
+    
+    mod <- robu(formula = es ~ 1,
+                data = dat,
+                var.eff.size = var,
+                modelweights = "CORR",
+                rho = rho_val,
+                studynum = study_id)
+    
+    
+    res <- conf_int(mod, vcov = "CR2", tidy = TRUE) %>%
+      rename(estimate = beta) %>%
+      as_tibble() %>%
+      mutate(method = "Correlated Effects") 
+    
+    
     
   } else if(n == 1){
     
@@ -49,11 +56,11 @@ tidy_meta <- function(dat,
                                     vi = var,
                                     data = dat)) # REML univariate random effects by default
     
-    res <- tidy(mod) %>%
-      dplyr::select(estimate, SE = std.error) %>%
-      mutate(df = NA,
-             CI_L = mod$ci.lb,
-             CI_U = mod$ci.ub) %>%
+    res <- tibble(estimate = as.numeric(mod$beta),
+                  SE = mod$se,
+                  df = NA,
+                  CI_L = mod$ci.lb,
+                  CI_U = mod$ci.ub) %>%
       mutate(method = "Univariate Random Effects")
     
   } 
@@ -61,7 +68,7 @@ tidy_meta <- function(dat,
   
   output <- bind_cols(res, summary) %>%
     mutate_if(is.numeric, round, 3) %>%
-    dplyr::select(method, estimate, n_studies, n_es)
+    select(method, estimate, n_studies, n_es)
   
   return(output)
 }
