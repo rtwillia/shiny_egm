@@ -231,12 +231,12 @@ server <-
     
     output$xMapping <- renderUI({
       var_names <- names(datFile())
-      selectInput("x", label = "Factor 1: Please specify the first factor for the EGM.", choices = var_names, selected = var_names[1])
+      selectInput("x", label = "Factor 1: Please specify the first factor (x-axis) for the EGM.", choices = var_names, selected = var_names[1])
     })
     
     output$yMapping <- renderUI({
       var_names <- names(datFile())
-      selectInput("y", label = "Factor 2: Please specify the second factor for the EGM.", choices = var_names, selected = var_names[1])
+      selectInput("y", label = "Factor 2: Please specify the second factor (y-axis) for the EGM.", choices = var_names, selected = var_names[1])
     })
     
     output$zMapping <- renderUI({
